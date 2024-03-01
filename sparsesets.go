@@ -4,16 +4,12 @@
 // A sparse set is an optimized data structure to perform efficient operations
 // on sets of unique integers from 0 to N-1. It achieves optimal time complexity
 // for most of its operations:
-//
-// - Insert: O(1)
-// - Remove: O(1)
-// - Contains: O(1)
-// - Clear: O(1)
-// - Iterate (in): O(size)
-// - Iterate (out): O(N - size)
-//
-// where "Iterate (in)" and "Iterate (out)" represent iterating on the elements
-// that are in/out of the set.
+//   - Insert:   O(1)
+//   - Remove:   O(1)
+//   - Contains: O(1)
+//   - Clear:    O(1)
+//   - Content:  O(size)
+//   - Absent:   O(N - size)
 //
 // This efficiency comes at the cost of increased memory usage, as a sparse set
 // internally utilizes two slices of N integers.
@@ -150,11 +146,7 @@ func (ss *Set) String() string {
 	bf := strings.Builder{}
 	bf.WriteString("{")
 	for v, p := range ss.positions[:len(ss.positions)-1] {
-		if p < ss.size {
-			bf.WriteString(fmt.Sprintf("%d: true, ", v))
-		} else {
-			bf.WriteString(fmt.Sprintf("%d: false, ", v))
-		}
+		bf.WriteString(fmt.Sprintf("%d: %v, ", v, p < ss.size))
 	}
 	lv := len(ss.positions) - 1
 	lp := ss.positions[lv]
