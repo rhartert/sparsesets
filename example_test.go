@@ -48,3 +48,14 @@ func ExampleSet_Absent() {
 	// 1: false
 	// 0: false
 }
+
+func ExampleSet_Clear() {
+	ss := New(5)
+	ss.Insert(0)
+	ss.Insert(2)
+	ss.Insert(4)
+
+	ss.Clear()
+	fmt.Println(ss.Size())
+	// Output: 0
+}

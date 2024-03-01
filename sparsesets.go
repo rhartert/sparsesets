@@ -112,6 +112,11 @@ func (ss *Set) swap(p1, p2 int) {
 	ss.positions[v2] = p1
 }
 
+// Clear empties the set in constant time.
+func (ss *Set) Clear() {
+	ss.size = 0
+}
+
 // Content returns a slice containing the current elements of the set.
 //
 // Important: The returned slice should only be used for read-only operations as
